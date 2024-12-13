@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deadshot.io Game</title>
+    <title>Game Iframe</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,9 +11,6 @@
             background-color: #f2f2f2;
             margin: 0;
             padding: 20px;
-        }
-        h1 {
-            margin-bottom: 20px;
         }
         iframe {
             width: 100%;
@@ -24,8 +21,31 @@
 </head>
 <body>
 
-<h1>Play Deadshot.io</h1>
-<iframe src="https://deadshot.io" frameborder="0"></iframe>
+<h1>Welcome to Game Iframe</h1>
+<iframe id="gameFrame" src=""></iframe>
+
+<script>
+    // Get the current path from the URL
+    const path = window.location.pathname;
+
+    // Define the mapping of paths to game URLs
+    const gameLinks = {
+        '/proxies/deadshot-io': 'https://deadshot.io',
+        '/proxies/krunker-io': 'https://krunker.io',
+        '/proxies/smashkarts-io': 'https://smashkarts.io'
+    };
+
+    // Get the corresponding game URL based on the current path
+    const gameUrl = gameLinks[path];
+
+    if (gameUrl) {
+        // Set the src of the iframe to the game URL
+        document.getElementById('gameFrame').src = gameUrl;
+    } else {
+        // Show an error message if no game is found
+        document.body.innerHTML = '<h1>Game Not Found</h1>';
+    }
+</script>
 
 </body>
 </html>
